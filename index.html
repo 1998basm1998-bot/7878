@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ChatGPT Mobile Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen" class="screen">
+        <div class="login-content">
+            <div class="gpt-logo">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2057 5.9847 5.9847 0 0 0 3.998-2.9001 6.0557 6.0557 0 0 0-.7478-7.0731z"/>
+                </svg>
+            </div>
+            <h1>مرحباً بك في ChatGPT</h1>
+            <p>سجّل الدخول للمتابعة</p>
+            <button id="google-login-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="20">
+                المتابعة باستخدام Google
+            </button>
+        </div>
+    </div>
+
+    <div id="app-screen" class="screen hidden">
+        
+        <header class="app-header">
+            <div class="header-right">
+                <button class="icon-btn" id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <div class="plus-badge">
+                    <i class="fa-solid fa-sparkles text-purple"></i> اشترك في Plus
+                </div>
+            </div>
+            <div class="header-left">
+                <button class="icon-btn"><i class="fa-solid fa-user-plus"></i></button>
+                <button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            </div>
+        </header>
+
+        <main class="chat-area" id="chat-area">
+            <div class="suggestions" id="suggestions">
+                <div class="suggestion-action">
+                    <i class="fa-regular fa-image text-blue"></i>
+                    <span>أنشئ صورة</span>
+                </div>
+                <div class="suggestion-action">
+                    <i class="fa-solid fa-pen text-blue"></i>
+                    <span>الكتابة أو التحرير</span>
+                </div>
+                <div class="suggestion-action">
+                    <i class="fa-solid fa-globe text-blue"></i>
+                    <span>ابحث عن شيء ما</span>
+                </div>
+            </div>
+            <div class="messages-container" id="messages-container"></div>
+        </main>
+
+        <footer class="bottom-bar">
+            <div class="input-wrapper">
+                <button class="icon-btn plus-btn" id="plus-btn"><i class="fa-solid fa-plus"></i></button>
+                <input type="text" id="chat-input" placeholder="اطرح سؤالك على Cha...">
+                <button class="icon-btn mic-btn"><i class="fa-solid fa-microphone"></i></button>
+            </div>
+            <button class="action-btn voice-btn" id="voice-btn"><i class="fa-solid fa-waveform"></i></button>
+            <button class="action-btn send-btn hidden" id="send-btn"><i class="fa-solid fa-arrow-up"></i></button>
+        </footer>
+
+        <div class="overlay" id="overlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>ChatGPT</h2>
+                <div class="sidebar-icons">
+                    <div class="search-circle"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <img src="https://ui-avatars.com/api/?name=User&background=333&color=fff" class="avatar" alt="Avatar">
+                </div>
+            </div>
+            <div class="sidebar-scroll">
+                <div class="sidebar-item"><i class="fa-regular fa-image"></i> <span>الصور</span></div>
+                <div class="sidebar-item"><i class="fa-solid fa-grip"></i> <span>التطبيقات</span></div>
+                
+                <div class="sidebar-section">المشروعات</div>
+                <div class="sidebar-item"><i class="fa-solid fa-folder-plus"></i> <span>مشروع جديد</span></div>
+                <div class="sidebar-item"><i class="fa-regular fa-folder"></i> <span>المشاريع الطبية</span></div>
+                <div class="sidebar-item">
+                    <div class="green-circle"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <span class="text-green">الاستثمار</span>
+                </div>
+
+                <div class="sidebar-section">الدردشات الأخيرة</div>
+                <div class="history-list">
+                    <div class="history-item">استمرار الفيديو من لقطة</div>
+                    <div class="history-item">دعاء رزق وزبائن</div>
+                    <div class="history-item">دعاء صلاة الشكر</div>
+                    <div class="history-item">PWA تثبيت وتحويل الموقع</div>
+                    <div class="history-item">أبو جنة ورقم سبعة</div>
+                    <div class="history-item">تطوير تطبيق توصيل</div>
+                    <div class="history-item">فهم رابط تيك توك</div>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <button class="new-chat-btn" id="new-chat-btn">
+                    <span>الدردشة</span> <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="bottom-sheet" id="bottom-sheet">
+            <div class="sheet-item">
+                <div class="sheet-icon"><i class="fa-solid fa-camera"></i></div>
+                <span>كاميرا</span>
+            </div>
+            <div class="sheet-item">
+                <div class="sheet-icon"><i class="fa-regular fa-image"></i></div>
+                <span>صور</span>
+            </div>
+            <div class="sheet-item">
+                <div class="sheet-icon"><i class="fa-solid fa-paperclip"></i></div>
+                <span>ملفات</span>
+            </div>
+            <div class="sheet-item">
+                <div class="sheet-icon"><i class="fa-brands fa-hubspot"></i></div>
+                <span>إنشاء صورة</span>
+            </div>
+            <div class="sheet-item">
+                <div class="sheet-icon"><i class="fa-regular fa-lightbulb"></i></div>
+                <span>التفكير</span>
+            </div>
+            <div class="sheet-item">
+                <div class="sheet-icon"><i class="fa-solid fa-microscope"></i></div>
+                <span>قم بإجراء بحث تفصيلي</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
